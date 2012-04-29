@@ -1,0 +1,2 @@
+module Ajax::OpenMapsHelper
+end
