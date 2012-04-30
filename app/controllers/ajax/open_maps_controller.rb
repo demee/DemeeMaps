@@ -1,6 +1,5 @@
 class Ajax::OpenMapsController < ApplicationController
-  def search
-    
+  def search    
   end
 
   def route

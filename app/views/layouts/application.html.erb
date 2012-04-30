@@ -10,12 +10,10 @@
 		<%= stylesheet_link_tag  "application", :media => "all" %>
 	</head>
 	<body>
-		<%= yield %>
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="brand" href="#home"> Demee's Maps </a>
-
 					<ul class="nav">
 						<li class="active link-search">
 							<a href="#search">Search</a>
@@ -31,8 +29,8 @@
 				</div>
 			</div>
 		</div>
-		<div id="map"></div>
-
+		<%= yield %>
+		
 		<script src="yui/build/yui/yui-min.js"></script>
 		<script src="jquery-1.7.2.min.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>

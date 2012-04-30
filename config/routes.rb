@@ -1,8 +1,12 @@
 MQLite::Application.routes.draw do
-  get "open_maps/search"
+   
+  get "/" =>  'application#index'
+   
+  get "open_maps/search" => 'open_maps#search'
 
-  get "open_maps/route"
+  get "open_maps/route"=> 'open_maps#route'
 
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
