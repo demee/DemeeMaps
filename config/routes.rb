@@ -1,10 +1,11 @@
 MQLite::Application.routes.draw do
    
   get "/" =>  'application#index'
-   
-  match "open_maps/search", :to => 'open_maps#search'
 
-  match "open_maps/route", :to => 'open_maps#route'
+  scope "/api" do  
+    get "open_maps/search/:query" => "api::open_maps#search"
+    get "open_maps/route/:from_lat/:from_lon/:to_lat/:to_lon" => "api::open_maps#route", :from_lat => /[^\/]*/, :from_lon => /[^\/]*/, :to_lat => /[^\/]*/, :to_lon => /[^\/]*/
+  end
 
  
   # The priority is based upon order of creation:
