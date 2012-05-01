@@ -2,9 +2,9 @@ MQLite::Application.routes.draw do
    
   get "/" =>  'application#index'
    
-  get "open_maps/search" => 'open_maps#search'
+  match "open_maps/search", :to => 'open_maps#search'
 
-  get "open_maps/route"=> 'open_maps#route'
+  match "open_maps/route", :to => 'open_maps#route'
 
  
   # The priority is based upon order of creation:
