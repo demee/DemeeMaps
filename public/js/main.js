@@ -93,15 +93,35 @@
         });    
     });
     
-    $('li.link-directions').click(function(){
+    $('a.link-directions').click(function(){
         $(this).addClass('active').siblings().removeClass('active'); 
-         $('input.search-to').fadeIn('slow');
+        $('input.search-to').fadeIn('slow');        
     });
     
-    $('li.link-search').click(function(){
+    $('a.link-search').click(function(){
          $(this).addClass('active').siblings().removeClass('active'); 
-         $('input.search-to').fadeOut('slow');
+         $('input.search-to').fadeOut('slow');         
     });
+    
+    $('a#btn-search,a.link-directions,a.link-search').click(function(){
+    	$('div#lhp').animate({    		
+    		width: 400
+    	}, {   		
+    		step: function(){    			
+    			map.invalidateSize();
+    		}    	    		
+  		});
+    })
+    
+    $('button.close').click(function(){
+    	$('div#lhp').animate({
+    		width:0,
+    	}, {
+    		step: function(){
+    			map.invalidateSize();
+    		}    		
+  		});
+    })
     
     $('input').click(function(){$(this).select()});
     

@@ -1,18 +1,18 @@
 development:
   adapter: mysql
-  database: library_development
-  username: root
-  password: 
+  database: mqlite_dev
+  username: mqlite
+  password: GtwXb8jQuAX2jpdf
   host: localhost
 test:
   adapter: mysql
-  database: library_test
-  username: root
-  password: 
+  database: mqlite_test
+  username: mqlite
+  password: GtwXb8jQuAX2jpdf
   host: localhost
 production:
   adapter: mysql
-  database: library_production
-  username: root
-  password: 
+  database: mqlite_prod
+  username: mqlite
+  password: GtwXb8jQuAX2jpdf
   host: localhost

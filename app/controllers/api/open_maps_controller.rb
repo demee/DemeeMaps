@@ -19,8 +19,6 @@ class Api::OpenMapsController < ApplicationController
                               "&unit=m&from=" + CGI.escape(params[:from_lat]) + "," + CGI.escape(params[:from_lon]) + "&" +
                               "to=" + CGI.escape(params[:to_lat]) + "," + CGI.escape(params[:to_lon]) +"&drivingStyle=2&highwayEfficiency=21.0");
                               
-    puts uri
-                              
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri);
     

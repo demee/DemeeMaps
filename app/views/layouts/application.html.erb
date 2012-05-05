@@ -14,18 +14,20 @@
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="brand" href="#home"> Demee's Maps </a>
-					<ul class="nav">
-						<li class="active link-search">
-							<a href="#search">Search</a>
-						</li>
-						<li class="link-directions">
-							<a href="#directions">Directions</a>
+					<ul class="nav">						
+						<li>
+							<div class="btn-group">
+								<a id="btn-search" class="btn" href="#"><i class="icon-search"></i> Search</a>
+								<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="#" class="link-search"><i class="icon-search"></i> Search</a></li>
+									<li><a href="#" class="link-directions"><i class="icon-road"></i> Directions</a></li>									
+									<li class="divider"></li>
+									<li><a href="#"><i class="i"></i>Search on current Map</a></li>
+								</ul>
+					        </div>
 						</li>
 					</ul>
-					<form class="navbar-form pull-left">
-						<input type="text" class="search-from" placeholder="Type in location" data-provide="typeahead">
-						<input type="text" class="search-to" placeholder="Type in location" data-provide="typeahead">
-					</form>
 				</div>
 			</div>
 		</div>
