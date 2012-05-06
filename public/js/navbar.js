@@ -1,7 +1,6 @@
 YUI.add('mqlite-navbar', function(Y){
-	
-	//termprorarly wrapper for bunch of jQuery functions
-!function($){
+    //navvar is typically jquery app, and it's all build with jquery (shame I know)'
+
 	
 	
 	
@@ -29,7 +28,7 @@ YUI.add('mqlite-navbar', function(Y){
     
     $('button.close').click(function(){
     	$('div#lhp').animate({
-    		width:0,
+    		width:0
     	}, {
     		step: function(){
     			Y_Main.namespace('mqlite').$map.invalidateSize();
@@ -46,11 +45,16 @@ YUI.add('mqlite-navbar', function(Y){
 	    	title: "Welcome to Demee's Maps'", 
 	    	content: "Type 's'' to start searchning, type 'd' for directions.", 
 	    	placement: "bottom", 
-	    	trigger: "hover"
+	    	trigger: "manual"
 	    }).popover("show");
     	setTimeout(function(){
     		$('.brand').popover("hide");
     	}, 3000);
+        
+        $(document).one('click', function(){
+            $('.brand').popover("hide");
+        });
+        
     }, 1000);
-}(window.jQuery)
+
 });

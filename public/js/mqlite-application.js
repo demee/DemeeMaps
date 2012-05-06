@@ -14,7 +14,7 @@ Y_Main.use('app', function(Y){
 	    },
 	
 	    handleSearch: function (req) {
-	        
+	        alert("hey")
 	    },
 	
 	    handleDirections: function (req) {
