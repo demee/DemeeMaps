@@ -5,29 +5,36 @@
 		<%= csrf_meta_tags %>
 		<link rel="stylesheet" type="text/css" href="/Leaflet/dist/leaflet.css"/>
 		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
-		<link rel="stylesheet/less" type="text/css" href="style.less">
+		<link rel="stylesheet/less" type="text/css" href="css/style.less">
 		<script src="/less-1.3.0.min.js"></script>
 		<%= stylesheet_link_tag  "application", :media => "all" %>
 	</head>
-	<body>
+    <body class="yui3-skin-night <%= @current_controller %>-controller <%= @current_action %>-action">
+     
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="brand" href="#home"> Demee's Maps </a>
-					<ul class="nav">						
-						<li>
-							<div class="btn-group">
-								<a id="btn-search" class="btn" href="#"><i class="icon-search"></i> Search</a>
-								<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-								<ul class="dropdown-menu">
-									<li><a href="#" class="link-search"><i class="icon-search"></i> Search</a></li>
-									<li><a href="#" class="link-directions"><i class="icon-road"></i> Directions</a></li>									
-									<li class="divider"></li>
-									<li><a href="#"><i class="i"></i>Search on current Map</a></li>
-								</ul>
-					        </div>
+					<ul class="nav">
+						<li class="dropdown">
+							<a href="/search" class="dropdown-toggle" data-toggle="dropdown" data-target="#"> Search  <b class="caret"></b> </a>
+							<ul class="dropdown-menu">
+								<li><a href="/search" data-target="#" class="link-search"><i class="icon-search"></i> Search</a></li>
+								<li><a href="/directions" data-target="#" class="link-directions"><i class="icon-road"></i> Directions</a></li>									
+								<li class="divider"></li>
+								<li><a href="#"><i class="i"></i>Search on current Map</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="/maptype" class="dropdown-toggle" data-toggle="dropdown" data-target="#"> Map Type <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/maptype/cloudmate" data-target="#" class="map-type-menu cloud-mate">Cloud Mate</a></li>
+								<li><a href="/maptype/openstreet" data-target="#" class="map-type-menu open-street-maps"> Open Street maps </a></li>
+							</ul>
 						</li>
 					</ul>
+				
 				</div>
 			</div>
 		</div>
@@ -38,7 +45,10 @@
 		<script src="jquery-1.7.2.min.js"></script>
 		<script src="bootstrap/js/bootstrap.js"></script>
 		<script src="Leaflet/dist/leaflet.js"></script>
-		<script src="main.js"></script>
+		<script src="js/modules-config.js"></script>
+		<script src="js/mqlite-application.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/navbar.js"></script>
 		<%= javascript_include_tag "application" %>
 	</body>
 </html>

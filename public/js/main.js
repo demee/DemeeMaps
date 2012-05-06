@@ -4,6 +4,7 @@ Y_Main.use(
 'autocomplete-highlighters',
 'json-parse',
 'mqlite-map',
+'mqlite-navbar',
  
 function (Y) {
 	"use strict";

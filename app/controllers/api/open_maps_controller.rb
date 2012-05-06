@@ -10,6 +10,7 @@ class Api::OpenMapsController < ApplicationController
     response = http.request(request)
     
     render :json => response.body
+
         
   end
 

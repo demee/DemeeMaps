@@ -1,3 +1,6 @@
+YUI.add('mqlite-navbar', function(Y){
+	
+	//termprorarly wrapper for bunch of jQuery functions
 !function($){
 	
 	
@@ -50,3 +53,4 @@
     	}, 3000);
     }, 1000);
 }(window.jQuery)
+});
