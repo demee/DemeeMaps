@@ -2,9 +2,18 @@ MQLite::Application.routes.draw do
    
   
 
-  get "/" =>  'application#index'
+  
+
+  get "/" =>  "application#index"
+  
+  get "/home" => "application#index"
   
   get "search" => "search#index"
+  get "search/:query" => "search#index"
+  
+  
+  get "directions" => "directions#index"
+  get "directions/:query" => "directions#index"
 
   scope "/api" do  
     get "open_maps/search/:query" => "api::open_maps#search"
