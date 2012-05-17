@@ -18,4 +18,5 @@
 .project
 .DS_Store
 /nbproject/private/
-/.idea/ 
+/.idea/
+/.metadata/
