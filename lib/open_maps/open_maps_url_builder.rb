@@ -15,8 +15,8 @@ class OpenMapsUrlBuilder
   
   def route(from_lat, from_lon, to_lat, to_lon)
     uri = directionsUrl(from_lat, from_lon, to_lat, to_lon)
+    Rails.logger.info uri.to_str
     getRequest(uri)
-
   end
   
   private
@@ -25,6 +25,9 @@ class OpenMapsUrlBuilder
     http = Net::HTTP.new(uri.host, uri.port)
     open_maps_request = Net::HTTP::Get.new(uri.request_uri)
     open_maps_response = http.request(open_maps_request)
+    Rails.logger.error open_maps_response.body.to_str
+
+    open_maps_response
   end
   
   def searchUrl(query)
