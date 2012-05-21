@@ -14,8 +14,7 @@ class OpenMapsUrlBuilder
   end
   
   def route(from_lat, from_lon, to_lat, to_lon)
-    uri = directionsUrl(from_lat, from_lon, to_lat, to_lon)
-    Rails.logger.info uri.to_str
+    uri = URI.parse(directionsUrl(from_lat, from_lon, to_lat, to_lon))    
     getRequest(uri)
   end
   

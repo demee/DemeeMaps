@@ -38,4 +38,7 @@ gem 'unicorn'
 # gem 'capistrano'
 
 # To use debugger
+gem 'ruby-debug-ide'
 gem 'ruby-debug'
+
+#gem "ruby-debug-base"  , "0.10.5.jb"
