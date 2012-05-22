@@ -1,6 +1,6 @@
 require "lib/open_maps/open_maps_service"
 
-class Api::OpenMapsController < ApplicationController
+class Api::OpenMapquestController < ApplicationController
 
   def initialize
     @open_maps_service = OpenMapsService.new

@@ -1,0 +1,7 @@
+development:
+  mapquest_api_key: Fmjtd%7Cluua2d0a2h%2Crn%3Do5-hf7n1
+test:  
+  mapquest_api_key: Fmjtd%7Cluua2d0a2h%2Crn%3Do5-hf7n1
+production:
+  mapquest_api_key: Fmjtd%7Cluua2d0a2h%2Crn%3Do5-hf7n1
+  

@@ -10,51 +10,36 @@
 		<%= stylesheet_link_tag  "application", :media => "all" %>
 	</head>
     <body class="yui3-skin-night <%= @current_controller %>-controller <%= @current_action %>-action">
-     
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="brand" href="/home" data-target="#"><b>Mapquest <sup>&reg;</sup></b> [hackerspace]</a>
-					<ul class="nav">
-						<li class="dropdown">
-							<a href="/search" class="dropdown-toggle" data-toggle="dropdown" data-target="#"> Search  <b class="caret"></b> </a>
-							<ul class="dropdown-menu">
-								<li><a href="/search" data-target="#" class="link-search"><i class="icon-search"></i> Search</a></li>
-								<li><a href="/directions" data-target="#" class="link-directions"><i class="icon-road"></i> Directions</a></li>									
-								<li class="divider"></li>
-								<li><a href="#"><i class="i"></i>Search on current Map</a></li>
-							</ul>
-						</li>
-						
-						<li class="dropdown">
-							<a href="/maptype" class="dropdown-toggle" data-toggle="dropdown" data-target="#"> Map Type <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="/maptype/cloudmate" data-target="#" class="map-type-menu cloud-mate">Cloud Mate</a></li>
-								<li><a href="/maptype/openstreet" data-target="#" class="map-type-menu open-street-maps"> Open Street maps </a></li>
-							</ul>
-						</li>
-					</ul>
-				
+    	<div id="lhp">
+    		<div class="navbar">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="brand" href="/home" data-target="#"><strong>Mapquest <sup>&reg;</sup></strong> [hackerspace]</a>
+						<ul class="nav">
+							<li id="search-btn" class="active">
+								<a href="/search"  data-toggle="dropdown" data-target="#"> Search <i class="icon-chevron-down icon-white"></i></a>								
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div id="lhp">
-		  <form class="pull-left">
-		    <button class="close">&times;</button>
-		    <input name="search0" type="text" class="search-from" placeholder="Type in location" data-provide="typeahead" />
-		    <input type="text" class="search-to" placeholder="Type in location" data-provide="typeahead" />
-		    <i class="icon-plus" style="cursor:pointer;"></i>
-		  </form>
-		  <%= yield %>
+			<div id="lhp-content">
+			  	<form class="pull-left">				    
+				    <input name="location" type="text" class="search-from" placeholder="Type in Location" data-provide="typeahead" />				    				    
+			  	</form>
+			  	<span class="add-destination"><i class="icon-plus icon-white" style="cursor:pointer;"></i>&nbsp;Add destination</span>
+			  <%= yield %>
+			 
+			</div>
 		</div>
 		
-		<div id="map"></div>	
-
-		
+		<div id="map"></div>
+				
 		<script src="/yui/build/yui/yui-min.js"></script>
 		<script src="/jquery-1.7.2.min.js"></script>
 		<script src="/bootstrap/js/bootstrap.js"></script>
 		<script src="/Leaflet/dist/leaflet.js"></script>
+		<script src="http://www.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=<%= APP_CONFIG["mapquest_api_key"] %>"></script> 
 		<script src="/js/modules-config.js"></script>
 		<script src="/js/mqlite-application.js"></script>
 		<script src="/js/main.js"></script>

@@ -1,60 +1,55 @@
 YUI.add('mqlite-navbar', function(Y){
     //navvar is typically jquery app, and it's all build with jquery (shame I know)'
-
-	
-	
-	
-	$("form").submit(function(){return false});
-	
-	$('a.link-directions').click(function(){
-        $(this).addClass('active').siblings().removeClass('active'); 
-        $('input.search-to').fadeIn('slow');        
-    });
-    
-    $('a.link-search').click(function(){
-         $(this).addClass('active').siblings().removeClass('active'); 
-         $('input.search-to').fadeOut('slow');         
-    });
-    
-    $('a#btn-search,a.link-directions,a.link-search').click(function(){
-    	$('div#lhp').animate({    		
-    		width: 400
-    	}, {   		
-    		step: function(){    			
-    			Y_Main.namespace('mqlite').$map.invalidateSize();
-    		}    	    		
-  		});
-    })
-    
-    $('button.close').click(function(){
+    var _showLHP = function(){
+    	$('div#lhp-content').removeClass('hidden');
     	$('div#lhp').animate({
-    		width:0
+    		height: $('div#lhp-content').outerHeight(true) + 58
     	}, {
-    		step: function(){
-    			Y_Main.namespace('mqlite').$map.invalidateSize();
-    		}    		
-  		});
-    })
+    	 	complete: function(){
+    			$('div#lhp-content').removeClass('hidden');
+    			$('#search-btn').addClass('active');
+    	}});
+  	},
+  	
+  	_hideLHP = function(){  		
+    	$('div#lhp').animate({
+    		height: 40
+    	}, {
+    	 	complete: function(){
+    			$('div#lhp-content').addClass('hidden');
+    			 $('#search-btn').removeClass('active'); 
+    	}});
+    	
+    },
+  	
+  	_addInput = function(){
+    	$("form").append('<input name="destination" placeholder="Type in Destination" />&nbsp;<i class="icon-remove icon-white"></i>')
+    	_reCalculateLHPSize();
+    	$(this).hide();
+   }, 
+   _reCalculateLHPSize = function(){
+   		$('div#lhp').animate({
+    		height: $('div#lhp-content').outerHeight(true) + 78
+    	});	
+   };
+	
+	$("span.add-destination").click(_addInput);
+	$("form").submit(function(){return false});        
+    $('input').click(function(){$(this).select()});    
+    $('#search-btn').click(function(){
+    	if($(this).hasClass('active')){
+    		_hideLHP();	
+    	} else {
+    		_showLHP(); 
+       	}	
+    });
     
-    $('input').click(function(){$(this).select()});
+    //Event delegation 
+    $(document).on('click', "form .icon-remove", function(){
+		$(this).prev().remove();
+		$(this).remove();
+		_reCalculateLHPSize();
+    	$("span.add-destination").show();
+	});
     
-    
-    
-    setTimeout(function(){
-    	$('.brand').popover({
-	    	title: "Welcome to Demee's Maps'", 
-	    	content: "Type 's'' to start searchning, type 'd' for directions.", 
-	    	placement: "bottom", 
-	    	trigger: "manual"
-	    }).popover("show");
-    	setTimeout(function(){
-    		$('.brand').popover("hide");
-    	}, 3000);
-        
-        $(document).one('click', function(){
-            $('.brand').popover("hide");
-        });
-        
-    }, 1000);
-
 });

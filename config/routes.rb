@@ -13,9 +13,9 @@ MQLite::Application.routes.draw do
 # get "directions/:query" => "directions#search" #TODO
 
   scope "/api" do    
-    get "open_maps/search/:query" => "api::open_maps#search"
-    get "open_maps/autocomplete/:query" => "api::open_maps#autocomplete"
-    get "open_maps/route/:from_lat/:from_lon/:to_lat/:to_lon" => "api::open_maps#route", :from_lat => /[^\/]*/, :from_lon => /[^\/]*/, :to_lat => /[^\/]*/, :to_lon => /[^\/]*/
+    get "open_maps/search/:query" => "api::open_mapquest#search"
+    get "open_maps/autocomplete/:query" => "api::open_mapquest#autocomplete"
+    get "open_maps/route/:from_lat/:from_lon/:to_lat/:to_lon" => "api::open_mapquest#route", :from_lat => /[^\/]*/, :from_lon => /[^\/]*/, :to_lat => /[^\/]*/, :to_lon => /[^\/]*/
   end
 
  
