@@ -3,7 +3,7 @@
 
 
 
-class OpenMapsUrlBuilder
+class OpenMapsService
   def initialize
     
   end

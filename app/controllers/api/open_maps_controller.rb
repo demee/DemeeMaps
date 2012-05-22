@@ -1,12 +1,12 @@
 require "net/http"
 require "uri"
 require "cgi"
-require "lib/open_maps/open_maps_url_builder"
+require "lib/open_maps/open_maps_service"
 
 class Api::OpenMapsController < ApplicationController
 
   def initialize
-    @open_maps_service = OpenMapsUrlBuilder.new
+    @open_maps_service = OpenMapsService.new
   end
 
   def search
