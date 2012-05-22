@@ -5,7 +5,7 @@
 		<%= csrf_meta_tags %>
 		<link rel="stylesheet" type="text/css" href="/Leaflet/dist/leaflet.css"/>
 		<link rel="stylesheet" type="text/css" href="/bootstrap/css/bootstrap.css"/>
-		<link rel="stylesheet/less" type="text/css" href="css/style.less">
+		<link rel="stylesheet/less" type="text/css" href="/css/style.less">
 		<script src="/less-1.3.0.min.js"></script>
 		<%= stylesheet_link_tag  "application", :media => "all" %>
 	</head>
@@ -14,7 +14,7 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="/home" data-target="#"> Demee's Maps </a>
+					<a class="brand" href="/home" data-target="#"><b>Mapquest <sup>&reg;</sup></b> [hackerspace]</a>
 					<ul class="nav">
 						<li class="dropdown">
 							<a href="/search" class="dropdown-toggle" data-toggle="dropdown" data-target="#"> Search  <b class="caret"></b> </a>
@@ -38,17 +38,27 @@
 				</div>
 			</div>
 		</div>
+		<div id="lhp">
+		  <form class="pull-left">
+		    <button class="close">&times;</button>
+		    <input name="search0" type="text" class="search-from" placeholder="Type in location" data-provide="typeahead" />
+		    <input type="text" class="search-to" placeholder="Type in location" data-provide="typeahead" />
+		    <i class="icon-plus" style="cursor:pointer;"></i>
+		  </form>
+		  <%= yield %>
+		</div>
 		
-		<%= yield %>
+		<div id="map"></div>	
+
 		
-		<script src="yui/build/yui/yui-min.js"></script>
-		<script src="jquery-1.7.2.min.js"></script>
-		<script src="bootstrap/js/bootstrap.js"></script>
-		<script src="Leaflet/dist/leaflet.js"></script>
-		<script src="js/modules-config.js"></script>
-		<script src="js/mqlite-application.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/navbar.js"></script>
+		<script src="/yui/build/yui/yui-min.js"></script>
+		<script src="/jquery-1.7.2.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.js"></script>
+		<script src="/Leaflet/dist/leaflet.js"></script>
+		<script src="/js/modules-config.js"></script>
+		<script src="/js/mqlite-application.js"></script>
+		<script src="/js/main.js"></script>
+		<script src="/js/navbar.js"></script>
 		<%= javascript_include_tag "application" %>
 	</body>
 </html>

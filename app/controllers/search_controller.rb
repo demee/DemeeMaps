@@ -1,24 +1,23 @@
+require 'rubygems'
+require 'json'
+require "lib/open_maps/open_maps_service"
+
 class SearchController < ApplicationController
   protect_from_forgery
   before_filter
-
-  def initialize
-    @open_maps_service = OpenMapsUrlBuilder.new
-  end
-
-  def index
-
-  end
-
-  def search
-    query = params[:query]
-    
-    if query.length > 0
-      open_maps_response = @open_maps_service.search(CGI.escape(query))
-      @search_results = open_maps_response.body
-    end
-
-
+  
+  def initialize 
+    @open_maps_service = OpenMapsService.new
   end
   
+  def index    
+  end
+  
+  def search              
+      @open_maps_response = @open_maps_service.search(CGI.escape(params[:query]))            
+      @search_results = JSON.parse @open_maps_response.body
+      
+      render 'search/search', :layout => "application"   
+  end
+   
 end

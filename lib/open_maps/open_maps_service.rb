@@ -1,15 +1,16 @@
 # To change this template, choose Tools | Templates
 # and open the template in the editor.
-
-
+require "net/http"
+require "uri"
+require "cgi"
 
 class OpenMapsService
   def initialize
     
   end
   
-  def search(query)
-    uri = URI.parse(searchUrl(query))
+  def search(query)    
+    uri = URI.parse(searchUrl(query))    
     getRequest(uri)
   end
   
@@ -24,8 +25,9 @@ class OpenMapsService
     http = Net::HTTP.new(uri.host, uri.port)
     open_maps_request = Net::HTTP::Get.new(uri.request_uri)
     open_maps_response = http.request(open_maps_request)
-    Rails.logger.error open_maps_response.body.to_str
-
+        
+    puts open_maps_response.body.to_str #DEBUG
+    
     open_maps_response
   end
   
