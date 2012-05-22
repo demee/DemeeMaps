@@ -3,13 +3,13 @@ var Y_Main = YUI({
     skin: 'night',
 	modules: {
 		'mqlite-map': {
-			fullpath: 'js/map.js'
+			fullpath: '/js/map.js'
 		}, 
 		'mqlite-navbar': {
-			fullpath: 'js/navbar.js'
+			fullpath: '/js/navbar.js'
 		}, 
 		'mqlite-main': {
-			fullpath: 'js/main.js'
+			fullpath: '/js/main.js'
 		}
 	}
 });

@@ -6,14 +6,15 @@ MQLite::Application.routes.draw do
   get "/home" => "application#index"
   
   get "search" => "search#index"
-  get "search/:query" => "search#search"
+  get "search/:query" => "search#search" #TODO
   
   
   get "directions" => "directions#index"
-  get "directions/:query" => "directions#index"
+# get "directions/:query" => "directions#search" #TODO
 
-  scope "/api" do
+  scope "/api" do    
     get "open_maps/search/:query" => "api::open_maps#search"
+    get "open_maps/autocomplete/:query" => "api::open_maps#autocomplete"
     get "open_maps/route/:from_lat/:from_lon/:to_lat/:to_lon" => "api::open_maps#route", :from_lat => /[^\/]*/, :from_lon => /[^\/]*/, :to_lat => /[^\/]*/, :to_lon => /[^\/]*/
   end
 

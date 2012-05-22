@@ -13,7 +13,7 @@ function (Y) {
 	  
     Y.one('input.search-from').plug(Y.Plugin.AutoComplete, {      
         resultHighlighter: 'phraseMatch',
-        source: "/api/open_maps/search/{query}", 
+        source: "/api/open_maps/autocomplete/{query}", 
         resultTextLocator: 'display_name',
         on: {
             select: function(event){
@@ -34,7 +34,7 @@ function (Y) {
     
     Y.one('input.search-to').plug(Y.Plugin.AutoComplete, {      
         resultHighlighter: 'phraseMatch',
-        source: "/api/open_maps/search/{query}", 
+        source: "/api/open_maps/autocomplete/{query}", 
         resultTextLocator: 'display_name',
         on: {
             select: function(event){

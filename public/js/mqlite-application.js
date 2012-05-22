@@ -25,8 +25,8 @@ Y_Main.use('app', function(Y){
 	        // Share these routes with all CustomApp instances.
 	        routes: {
 	            value: [
-	                {path: '/',             callback: 'handleHome'},
-	                {path: '/search',       callback: 'handleUsers'},
+	                {path: '/',           callback: 'handleHome'},
+	                {path: '/search',     callback: 'handleUsers'},
 	                {path: '/directions', callback: 'handleUser'}
 	            ]
 	        }
