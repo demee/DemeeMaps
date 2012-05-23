@@ -121,7 +121,19 @@ div#lhp {
       }
       
       div#search-results {        
-        margin-left: 20px;
+        
+        ul {
+          margin-left: 0px; 
+          li {
+            padding-left: 20px;
+            list-style-type: none; 
+            margin-top: 5px;
+            cursor: pointer; 
+            &:hover {
+              background: @mapquestPurple;
+            }
+          }
+        }
       } 
       
       span.add-destination {

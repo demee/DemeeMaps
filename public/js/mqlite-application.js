@@ -3,8 +3,7 @@ Y_Main.use('app', function(Y){
 	Y.MQLiteApp = Y.Base.create('MQLiteApp', Y.App, [], {
 	    views: {
 	    	home: {preserve: true},
-	        search: {preserve: true},
-	        directions: {preserve: true}
+	        search: {preserve: true}
 	    },
 	
 	    // Default route handlers inherited by all CustomApp instances.
@@ -15,10 +14,6 @@ Y_Main.use('app', function(Y){
 	
 	    handleSearch: function (req) {
 	        alert("hey")
-	    },
-	
-	    handleDirections: function (req) {
-	        
 	    }
 	}, {
 	    ATTRS: {
@@ -26,8 +21,7 @@ Y_Main.use('app', function(Y){
 	        routes: {
 	            value: [
 	                {path: '/',           callback: 'handleHome'},
-	                {path: '/search',     callback: 'handleUsers'},
-	                {path: '/directions', callback: 'handleUser'}
+	                {path: '/search',     callback: 'handleUsers'}
 	            ]
 	        }
 	    }

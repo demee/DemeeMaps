@@ -15,7 +15,8 @@ class SearchController < ApplicationController
   end
   
   def search              
-      @open_maps_response = @open_maps_service.search(CGI.escape(params[:query]))            
+      @open_maps_response = @open_maps_service.search(CGI.escape(params[:query]))
+                
       @search_results = JSON.parse @open_maps_response.body
       
       render 'search/search', :layout => "application"   

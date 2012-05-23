@@ -45,5 +45,12 @@
 		<script src="/js/main.js"></script>
 		<script src="/js/navbar.js"></script>
 		<%= javascript_include_tag "application" %>
+		<script>
+			MQ_DATA = {
+				<% if @open_maps_response %>
+				search: <%=raw @open_maps_response.body %>
+				<% end %>	 
+			}
+		</script>
 	</body>
 </html>

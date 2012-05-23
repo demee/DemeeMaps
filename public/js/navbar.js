@@ -3,7 +3,7 @@ YUI.add('mqlite-navbar', function(Y){
     var _showLHP = function(){
     	$('div#lhp-content').removeClass('hidden');
     	$('div#lhp').animate({
-    		height: $('div#lhp-content').outerHeight(true) + 58
+    		height: $('div#lhp-content').outerHeight(true) + 60
     	}, {
     	 	complete: function(){
     			$('div#lhp-content').removeClass('hidden');
@@ -29,7 +29,7 @@ YUI.add('mqlite-navbar', function(Y){
    }, 
    _reCalculateLHPSize = function(){
    		$('div#lhp').animate({
-    		height: $('div#lhp-content').outerHeight(true) + 78
+    		height: $('div#lhp-content').outerHeight(true) + 60
     	});	
    };
 	

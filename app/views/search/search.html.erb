@@ -1,8 +1,7 @@
 <div id="search-results">
-	<h5>Search Results</h5>		
 	<ul>
-		<% @search_results.each do |result| %>
-			<li><%= result["display_name"] %></li>
+		<% @search_results.each_with_index do |result, index| %>
+			<li cnt="<%= index %>"><%= result["display_name"] %></li>
 		<% end %>
 	</ul>
 </div>
