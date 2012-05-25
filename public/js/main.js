@@ -5,7 +5,8 @@ Y_Main.use(
 'json-parse',
 'mqlite-map',
 'mqlite-navbar', 
-'event-key', function(Y){
+'event-key', 
+function(Y){
 	
 	"use strict";
 	
@@ -33,11 +34,15 @@ Y_Main.use(
             }
         }
     }).on('key', function(){
-    	window.location = '/search/' + this.get('value'); 
+    	Y_Main.namespace('mqlite').$mqliteApp.navigate( '/search/' + this.get('value')); 
     },'enter');
     
     Y.one('#lhp-content').delegate('click', function(){
     	_renderPOI(MQ_DATA.search[this.getAttribute("cnt")]);
-    }, 'li'); 
+    }, 'li');
+    
+    if(MQ_DATA.search[0]){
+   		_renderPOI(MQ_DATA.search[0]);
+	}		
     	
 }); 

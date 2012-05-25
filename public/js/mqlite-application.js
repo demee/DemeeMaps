@@ -1,38 +1,31 @@
-Y_Main.use('app', function(Y){
-	
+Y_Main.use('app', 'pjax', function(Y){	
 	Y.MQLiteApp = Y.Base.create('MQLiteApp', Y.App, [], {
 	    views: {
-	    	home: {preserve: true},
-	        search: {preserve: true}
+	    	index: {},
+	        search: {}
 	    },
-	
-	    // Default route handlers inherited by all CustomApp instances.
-	
-	    handleHome: function (req) {
+	    hendleIndex: function (req) {
 	        
-	    },
-	
+	    },	
 	    handleSearch: function (req) {
-	        alert("hey")
+	    	 var request = Y.io(req.path, {
+	    	 	headers: {"x-pjax": true},
+	    	 	on: {
+	    	 		success: function(transactionid, response, arguments){
+	    	 			Y.one("#search-results").setHTML(response.responseText);
+	    	 		}
+	    	 	}
+	    	 });	    	
 	    }
 	}, {
-	    ATTRS: {
-	        // Share these routes with all CustomApp instances.
+	    ATTRS: {	        	        
 	        routes: {
 	            value: [
-	                {path: '/',           callback: 'handleHome'},
-	                {path: '/search',     callback: 'handleUsers'}
+	                {path: '/',              callback: 'hendleIndex'},
+	                {path: '/search/:query', callback: 'handleSearch'}
 	            ]
 	        }
 	    }
-	});
-	
-	// Create a CustomApp instance that inherits the defaults and adds to them.
-	Y_Main.namespace('mqlite').$mqliteApp = new Y.MQLiteApp({
-	    // Register an additional view. The `home`, `users`, and `user` views will
-	    // also be inherited.
-	    views: {
-	        about: {preserve: true}
-	    }
-	});
+	});	
+	var app = Y_Main.namespace('mqlite').$mqliteApp = new Y.MQLiteApp({});
 });

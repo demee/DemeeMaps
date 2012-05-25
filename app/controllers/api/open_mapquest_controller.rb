@@ -12,7 +12,7 @@ class Api::OpenMapquestController < ApplicationController
     rescue
       render :json => "[]"
     ensure
-      render :json => open_maps_response.body if open_maps_response != nil
+      render :json => open_maps_response.body
     end
   end
   

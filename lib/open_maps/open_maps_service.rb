@@ -9,8 +9,8 @@ class OpenMapsService
     
   end
   
-  def search(query)    
-    uri = URI.parse(searchUrl(query))    
+  def search(query)
+    uri = URI.parse(searchUrl(query))
     getRequest(uri)
   end
   
@@ -25,9 +25,9 @@ class OpenMapsService
     http = Net::HTTP.new(uri.host, uri.port)
     open_maps_request = Net::HTTP::Get.new(uri.request_uri)
     open_maps_response = http.request(open_maps_request)
-        
-    puts open_maps_response.body.to_str #DEBUG
     
+    Rails.logger.error open_maps_response.body.to_str
+
     open_maps_response
   end
   

@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'json'
+require "lib/mapquest/mapquest_service"
 require "lib/open_maps/open_maps_service"
 
 class SearchController < ApplicationController
@@ -7,19 +8,26 @@ class SearchController < ApplicationController
   before_filter
   
   def initialize 
-    @open_maps_service = OpenMapsService.new
+    @mapquest_service = MapquestService.new
+    @open_mapquest_service = OpenMapsService.new
   end
   
   def index    
     render :layout => 'application'
   end
   
-  def search              
-      @open_maps_response = @open_maps_service.search(CGI.escape(params[:query]))
+  def search   
+      @query = params[:query]           
+      @maps_response = @open_mapquest_service.search(CGI.escape(@query))
                 
-      @search_results = JSON.parse @open_maps_response.body
+      results = JSON.parse @maps_response.body
       
-      render 'search/search', :layout => "application"   
+      @search_results = results 
+      if request.headers["X-PJAX"] == "true"
+        render 'search/search'  
+      else 
+        render 'search/search', :layout => "application"
+      end   
   end
    
 end

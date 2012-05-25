@@ -1,5 +1,5 @@
 var Y_Main = YUI({
-	filter: 'raw', 
+	filter: 'debug', 
     skin: 'night',
 	modules: {		
 		'mqlite-map': {

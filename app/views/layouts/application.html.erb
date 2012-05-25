@@ -25,7 +25,7 @@
 			</div>
 			<div id="lhp-content">
 			  	<form class="pull-left">				    
-				    <input name="location" type="text" class="search-from" placeholder="Type in Location" data-provide="typeahead" />				    				    
+				    <input name="location" type="text" class="search-from" placeholder="Type in Location" data-provide="typeahead" value="<%= @query %>"/>				    				    
 			  	</form>
 			  	<span class="add-destination"><i class="icon-plus icon-white" style="cursor:pointer;"></i>&nbsp;Add destination</span>
 			  <%= yield %>
@@ -35,7 +35,7 @@
 		
 		<div id="map"></div>
 				
-		<script src="/yui/build/yui/yui-min.js"></script>
+		<script src="/yui/build/yui/yui.js"></script>
 		<script src="/jquery-1.7.2.min.js"></script>
 		<script src="/bootstrap/js/bootstrap.js"></script>
 		<script src="/Leaflet/dist/leaflet.js"></script>
@@ -47,8 +47,8 @@
 		<%= javascript_include_tag "application" %>
 		<script>
 			MQ_DATA = {
-				<% if @open_maps_response %>
-				search: <%=raw @open_maps_response.body %>
+				<% if @search_results %>
+				search: <%=raw @search_results.to_json %>
 				<% end %>	 
 			}
 		</script>

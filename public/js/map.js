@@ -1,11 +1,7 @@
 YUI.add('mqlite-map', function(Y){
 	"use strict"; 
 	
-	/* global: L */
-	
-   
-	
-      /*Create an object for options*/ 
+	  /*Create an object for options*/ 
       var options={
         elt:document.getElementById('map'),       /*ID of element on the page where you want the map added*/ 
         zoom:10,                                  /*initial zoom level of the map*/ 
@@ -15,7 +11,6 @@ YUI.add('mqlite-map', function(Y){
         zoomOnDoubleClick:true                    /*zoom in when double-clicking on map*/ 
       };
 
-      /*Construct an instance of MQA.TileMap with the options object*/ 
       window.map = new MQA.TileMap(options);
       
       MQA.withModule('largezoom','traffictoggle','viewoptions','geolocationcontrol','insetmapcontrol','mousewheel', function() {
@@ -54,6 +49,4 @@ YUI.add('mqlite-map', function(Y){
 	
 	    map.enableMouseWheelZoom();
 	  });
-
-    
 });

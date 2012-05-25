@@ -1,18 +1,22 @@
+require "net/http"
+require "uri"
+require "cgi"
+
 class MapquestService
-  @@api_key = "Fmjtd%7Cluua2d0a2h%2Crn%3Do5-hf7n1"
-  
   
   def initialize
     
   end
   
-  def search
-    
+  def search(query)    
+    uri = URI.parse(searchUrl(query))    
+    getRequest(uri)
   end
   
-  def directions
-    
-  end 
+  def route(from_lat, from_lon, to_lat, to_lon)
+    uri = URI.parse(directionsUrl(from_lat, from_lon, to_lat, to_lon))    
+    getRequest(uri)
+  end
   
   private
   
@@ -27,7 +31,7 @@ class MapquestService
   end
   
   def searchUrl(query)
-    "http://www.mapquestapi.com/nominatim/v1/search?format=json&q=" + query
+    "http://www.mapquestapi.com/geocoding/v1/address?key=#{APP_CONFIG["mapquest_api_key"]}&outFormat=json&thumbMaps=false&location=" + query
   end
   
   def directionsUrl(from_lat, from_lon, to_lat, to_lon)
