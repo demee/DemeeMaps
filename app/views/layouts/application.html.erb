@@ -25,10 +25,13 @@
 			</div>
 			<div id="lhp-content">
 			  	<form class="pull-left">				    
-				    <input name="location" type="text" class="search-from" placeholder="Type in Location" data-provide="typeahead" value="<%= @query %>"/>				    				    
+				    <input name="location" type="text" class="search-from" placeholder="Type in Location" data-provide="typeahead" value="<%= @query %>"/>
 			  	</form>
+			  	<button id="get-directions" class="btn btn-primary">Get Directions</button>
 			  	<span class="add-destination"><i class="icon-plus icon-white" style="cursor:pointer;"></i>&nbsp;Add destination</span>
-			  <%= yield %>
+			  	<div id="search-results">
+			        <%= yield %>
+			    </div>
 			 
 			</div>
 		</div>
@@ -49,7 +52,10 @@
 			MQ_DATA = {
 				<% if @search_results %>
 				search: <%=raw @search_results.to_json %>
-				<% end %>	 
+				<% end %>
+				<% if @dir_results %>
+				directions: <%=raw @dir_results.to_json %>
+				<% end %>	
 			}
 		</script>
 	</body>

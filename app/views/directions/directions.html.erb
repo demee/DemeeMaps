@@ -1,0 +1,9 @@
+<ul>
+    <% @legs.each_with_index do |leg, index| %>
+        <% leg['maneuvers'].each_with_index do |man, index| %>
+            <li >
+                <%= index %>. <%= man["narrative"]%>
+            </li>
+        <% end %>
+    <% end %>
+</ul>

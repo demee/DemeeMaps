@@ -23,11 +23,9 @@ class SearchController < ApplicationController
       results = JSON.parse @maps_response.body
       
       @search_results = results 
-      if request.headers["X-PJAX"] == "true"
-        render 'search/search'  
-      else 
-        render 'search/search', :layout => "application"
-      end   
+      
+      render 'search/search', :layout => "application"
+       
   end
    
 end

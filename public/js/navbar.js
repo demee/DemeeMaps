@@ -1,9 +1,10 @@
 YUI.add('mqlite-navbar', function(Y){
     //navvar is typically jquery app, and it's all build with jquery (shame I know)'
-    var _showLHP = function(){
+    var _navbarHeight = 60, 
+        _showLHP = function(){
     	$('div#lhp-content').removeClass('hidden');
     	$('div#lhp').animate({
-    		height: $('div#lhp-content').outerHeight(true) + 60
+    		height: $('div#lhp-content').outerHeight(true) + _navbarHeight 
     	}, {
     	 	complete: function(){
     			$('div#lhp-content').removeClass('hidden');
@@ -24,12 +25,12 @@ YUI.add('mqlite-navbar', function(Y){
   	
   	_addInput = function(){
     	$("form").append('<input name="destination" placeholder="Type in Destination" />&nbsp;<i class="icon-remove icon-white"></i>')
+    	$("button#get-directions").show();
     	_reCalculateLHPSize();
-    	$(this).hide();
    }, 
    _reCalculateLHPSize = function(){
    		$('div#lhp').animate({
-    		height: $('div#lhp-content').outerHeight(true) + 60
+    		height: $('div#lhp-content').outerHeight(true) + _navbarHeight
     	});	
    };
 	

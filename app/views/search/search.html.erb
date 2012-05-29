@@ -1,13 +1,7 @@
-<div id="search-results">
-	<ul>
-		<% @search_results.each_with_index do |result, index| %>
-			<li cnt="<%= index %>">
-				<% if false%>
-					<% for i in 0..5 %>
-	   					<%= result["adminArea" + i.to_s] %></li>
-					<% end %> 
-				<% end %>
-				<%= result["display_name"]%>
-		<% end %>
-	</ul>
-</div>
+<ul>
+	<% @search_results.each_with_index do |result, index| %>
+		<li id="place_id_<%= result["place_id"] %>">
+			<%= result["display_name"]%>
+		</li>
+	<% end %>
+</ul>
