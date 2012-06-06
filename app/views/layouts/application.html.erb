@@ -19,6 +19,9 @@
 							<li id="search-btn" class="active">
 								<a href="/search"  data-toggle="dropdown" data-target="#"> Search <i class="icon-chevron-down icon-white"></i></a>								
 							</li>
+							<li id="collaborate-btn" class="inactive">
+								<a href="/collaborate"  data-toggle="dropdown" data-target="#"> Collaborate <i class="icon-chevron-down icon-white"></i></a>								
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -33,6 +36,12 @@
 			        <%= yield %>
 			    </div>
 			 
+			</div>
+			<div id="lhp-collaborate"  class="hidden">
+			  	<button id="share" class="btn btn-primary">Share!</button>
+			  	<div id="itinerary">
+			      <ul></ul>
+			    </div>
 			</div>
 		</div>
 		

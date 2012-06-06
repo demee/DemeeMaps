@@ -14,6 +14,7 @@ function(Y){
 		/**
 		 * render poi based on open data response 
 		 */
+	    
 		_renderPOI = function(point){
 			var bb = point.boundingbox, 
 	            southWest = new MQA.LatLng(bb[0],bb[2]),
@@ -24,6 +25,15 @@ function(Y){
 		    
 		    var shape = new MQA.Poi(new MQA.LatLng(point.lat, point.lon));
 		    shape.setRolloverContent(point.display_name.split(',')[0]);
+		    var detail = {name: point.display_name, id: point.place_id, lat:point.lat, lon:point.lon};
+		    var escaped = escape(JSON.stringify(detail));
+		    
+		    
+		    
+		    var content = "<div class=\"poi_detail\">" + point.display_name +
+		    			  "<button class=\"button add_to_itinerary\" onclick=\"javascript:hackAddToItinerary('" + escaped +"');\">Add to Itinerary</button>" +
+		    		      "</div>";
+		    shape.setInfoContentHTML(content);
 		    map.addShape(shape);
 		};
 		
@@ -44,7 +54,7 @@ function(Y){
     	_app.get('directions').push(poi); //FIXME 
     	_renderPOI(poi);
     }, 'li');
-    
+
     Y.one('button#get-directions').on('click', function(){
         var pois = _app.get('directions'), 
             query = "", i=0, poi; 
@@ -61,3 +71,45 @@ function(Y){
 	}		
     	
 }); 
+
+function hackAddToItinerary(escapedObject){
+	
+	var _app = Y_Main.namespace('mqlite').$mqliteApp, 
+	obj = JSON.parse(unescape(escapedObject));
+	
+	var li = $("<li>" + obj.name + " <div class=\"delete\">delete</div></li>");
+	
+	$("#itinerary ul").append(li);
+	
+	//TODO: add event handler for delete!!
+	//TODO: make callback to ruby to add!!!!
+	
+	data = {
+	   id: "123345", /* hard-coded*/
+	   poi : {
+		name: "a b c d ";
+	   }
+	};
+	handleCollections('save', data);
+		
+}
+
+
+function handleCollections(action, data) {
+
+	var cfg = {
+		method : 'POST',
+		data : data,
+		headers: {
+	        'Content-Type': 'application/json',
+	    },
+		on : {
+			success : function(transactionid, response, arguments) {
+				// do something here ??
+				console.log(response);
+			}
+		}
+	};
+
+	var request = Y_Main.io("/api/collections/" + action, cfg);
+}

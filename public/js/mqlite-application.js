@@ -26,7 +26,7 @@ Y_Main.use('app', 'handlebars', function(Y){
 	    	index: {},
 	        search: {}
 	    },
-	    hendleIndex: function (req) {
+	    handleIndex: function (req) {
 	        
 	    },	
 	    handleSearch: function (req) {
@@ -62,9 +62,9 @@ Y_Main.use('app', 'handlebars', function(Y){
 	    ATTRS: {	        	        
 	        routes: {
 	            value: [
-	                {path: '/',                  callback: 'hendleIndex'},
+	                {path: '/',                  callback: 'handleIndex'},
 	                {path: '/search/:query',     callback: 'handleSearch'}, 
-	                {path: '/directions/:query', callback: 'handleDirections'}
+	                {path: '/directions/:query', callback: 'handleDirections'}	               
 	            ]
 	        }, 
 	        search: {

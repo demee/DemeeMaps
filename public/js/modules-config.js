@@ -5,7 +5,7 @@ var Y_Main = YUI({
 		'mqlite-map': {
 			fullpath: '/js/map.js'
 		},		
-		'mqlite-navbar': {
+		'	r': {
 			fullpath: '/js/navbar.js'
 		},
 		'mqlite-main': {

@@ -17,7 +17,9 @@ MQLite::Application.routes.draw do
     get "mapquest/search/:query" => "api::mapquest#search"
     get "open_maps/search/:query" => "api::open_mapquest#search"
     get "open_maps/directions/:query" => "api::open_mapquest#directions", :query => /[^\/]*/
+    post "collections/:action/" => "api::collections#action"
   end
+  
 
  
   # The priority is based upon order of creation:

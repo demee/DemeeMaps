@@ -22,7 +22,31 @@ YUI.add('mqlite-navbar', function(Y){
     	}});
     	
     },
+    
+    _showCollabPanel = function(){
+    	
+    	$('div#lhp-collaborate').removeClass('hidden');
+    	$('div#lhp').animate({
+    		height: $('div#lhp-collaborate').outerHeight(true) + _navbarHeight 
+    	}, {
+    	 	complete: function(){
+    			$('div#lhp-collaborate').removeClass('hidden');
+    			$('#collaborate-btn').addClass('active');
+    	}});
+    	
+    },
   	
+    _hideCollabPanel = function(){  		
+    	$('div#lhp').animate({
+    		height: 40
+    	}, {
+    	 	complete: function(){
+    			$('div#lhp-collaborate').addClass('hidden');
+    			 $('#collaborate-btn').removeClass('active'); 
+    	}});
+    	
+    },
+    
   	_addInput = function(){
     	$("form").append('<input name="destination" placeholder="Type in Destination" />&nbsp;<i class="icon-remove icon-white"></i>')
     	$("button#get-directions").show();
@@ -39,9 +63,21 @@ YUI.add('mqlite-navbar', function(Y){
     $('input').click(function(){$(this).select()});    
     $('#search-btn').click(function(){
     	if($(this).hasClass('active')){
+    		_showCollabPanel();
     		_hideLHP();	
     	} else {
+    		_hideCollabPanel();
     		_showLHP(); 
+       	}	
+    });
+    
+    $('#collaborate-btn').click(function(){
+    	if($(this).hasClass('active')){
+    		_hideCollabPanel();
+    		_showLHP();
+    	} else {
+    		_hideLHP();
+    		_showCollabPanel(); 
        	}	
     });
     

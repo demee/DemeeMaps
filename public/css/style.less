@@ -3,6 +3,7 @@
 @navbarHeight: 40px;
 @mapquestGreen: #8CC63F;
 @mapquestPurple: #51214D;
+@mapquestLink: #009ADE;
 
 /** Animations declaration **/   
 
@@ -86,7 +87,7 @@ div#lhp {
     display: inline;
     background: rgba(54, 54, 54, 0.8);
     color: #fff;          
-    width: 400px;    
+    width: 505px;    
     max-height: 90%; 
    
     
@@ -94,7 +95,7 @@ div#lhp {
     .box-shadow(0, 0, 6px, #666);  
    
     
-    div#lhp-content {
+    div#lhp-collaborate, div#lhp-content {
       overflow-y: auto;
       overflow-x: hidden; 
       padding-bottom: 20px;
@@ -104,8 +105,8 @@ div#lhp {
         display: none;
       } 
     
-      form {
-         margin: 10px 20px 5px 20px;
+      form {         
+         margin: 10px 121px 5px 29px;
          input {
             width: 320px;         
             box-shadow: none;
@@ -124,6 +125,7 @@ div#lhp {
         margin-left: 20px;
         display: none;
       }
+      
       
       div#search-results {        
         
@@ -146,4 +148,21 @@ div#lhp {
         margin-left: 20px;        
       }
     }
+}
+
+div.poi_detail{
+   width: 140px;
+}
+
+.button{
+   color: @mapquestLink;
+}
+
+.delete{
+	display:inline;
+	color: @mapquestLink;
+	&:hover { 
+		text-decoration:underline; 
+		cursor: pointer;
+	}
 }
