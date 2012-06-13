@@ -5,6 +5,8 @@ MQLite::Application.routes.draw do
   
   get "/home" => "application#index"
   
+  get "/share/:id" => "application#index",  :query => /[^\/]*/
+  
   get "search" => "search#index"
   get "search/:query" => "search#search"
   get "directions/:query" => "directions#directions", :query => /[^\/]*/
@@ -17,7 +19,8 @@ MQLite::Application.routes.draw do
     get "mapquest/search/:query" => "api::mapquest#search"
     get "open_maps/search/:query" => "api::open_mapquest#search"
     get "open_maps/directions/:query" => "api::open_mapquest#directions", :query => /[^\/]*/
-    post "collections/:action/" => "api::collections#action"
+    post "collections/save/" => "api::collections#save"
+    post "collections/delete/" => "api::collections#delete"
   end
   
 

@@ -29,44 +29,21 @@ Y_Main.use('app', 'handlebars', function(Y){
 	    handleIndex: function (req) {
 	        
 	    },	
-	    handleSearch: function (req) {
-	    	 var request = Y.io("/api/open_maps" + req.path, {
-	    	 	on: {
-	    	 		success: function(transactionid, response, arguments){
-	    	 		    _app.set('search', Y.JSON.parse(response.responseText));
-	    	 			var html = _templates.searchResults({ 
-	    	 			    results: _app.get('search')
-	    	 			});
-	    	 			
-	    	 			Y.one("#search-results").setHTML(html);
-	    	 		}
-	    	 	}
-	    	 });	    	
-	    }, 
-	    handleDirections: function(req) {
-	        var request = Y_Main.io("/api/open_maps" + req.path, {
-	            on: {
-	                success: function(transactionid, response, arguments){
-	                    _app.set('route', Y_Main.JSON.parse(response.responseText)); 
-	                    var html = _templates.directionsResults({
-	                        legs: _app.get('route')['route']['legs']
-	                    }); 
-	                    
-	                    Y.one("#search-results").setHTML(html);
-	                    _renderRoute();
-	                }
-	            }
-	        })
-	    }
+	    
+	   
 	}, {
 	    ATTRS: {	        	        
 	        routes: {
 	            value: [
 	                {path: '/',                  callback: 'handleIndex'},
 	                {path: '/search/:query',     callback: 'handleSearch'}, 
-	                {path: '/directions/:query', callback: 'handleDirections'}	               
+	                {path: '/directions/:query', callback: 'handleDirections'}               
+	             
 	            ]
 	        }, 
+	        share: {
+	        	value: {}
+	        },
 	        search: {
 	            value: MQ_DATA.search
 	        }, 
@@ -92,5 +69,37 @@ Y_Main.use('app', 'handlebars', function(Y){
 	    while(result = searchResults[i++]){
 	        if(result.place_id === place_id) return result; 
 	    }
-	}
+	},
+	
+	_app.handleSearch = function (req) {
+   	 var request = Y.io("/api/open_maps" + req.path, {
+   	 	on: {
+   	 		success: function(transactionid, response, arguments){
+   	 		    _app.set('search', Y.JSON.parse(response.responseText));
+   	 			var html = _templates.searchResults({ 
+   	 			    results: _app.get('search')
+   	 			});
+   	 			
+   	 			Y.one("#search-results").setHTML(html);
+   	 		    Y.navbar.reCalculateLHPSize();
+   	 		}
+   	 	}
+   	 });	    	
+   }, 
+   
+   _app.handleDirections = function(req) {
+       var request = Y_Main.io("/api/open_maps" + req.path, {
+           on: {
+               success: function(transactionid, response, arguments){
+                   _app.set('route', Y_Main.JSON.parse(response.responseText)); 
+                   var html = _templates.directionsResults({
+                       legs: _app.get('route')['route']['legs']
+                   }); 
+                   
+                   Y.one("#search-results").setHTML(html);
+                   _renderRoute();
+               }
+           }
+       })
+   }
 });

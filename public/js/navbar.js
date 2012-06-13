@@ -1,7 +1,9 @@
 YUI.add('mqlite-navbar', function(Y){
     //navvar is typically jquery app, and it's all build with jquery (shame I know)'
     var _navbarHeight = 60, 
-        _showLHP = function(){
+    
+    
+    _showLHP = function(){
     	$('div#lhp-content').removeClass('hidden');
     	$('div#lhp').animate({
     		height: $('div#lhp-content').outerHeight(true) + _navbarHeight 
@@ -23,27 +25,33 @@ YUI.add('mqlite-navbar', function(Y){
     	
     },
     
-    _showCollabPanel = function(){
-    	
-    	$('div#lhp-collaborate').removeClass('hidden');
-    	$('div#lhp').animate({
-    		height: $('div#lhp-collaborate').outerHeight(true) + _navbarHeight 
-    	}, {
-    	 	complete: function(){
-    			$('div#lhp-collaborate').removeClass('hidden');
-    			$('#collaborate-btn').addClass('active');
-    	}});
-    	
-    },
-  	
     _hideCollabPanel = function(){  		
     	$('div#lhp').animate({
     		height: 40
     	}, {
     	 	complete: function(){
-    			$('div#lhp-collaborate').addClass('hidden');
-    			 $('#collaborate-btn').removeClass('active'); 
+    			 $('div#lhp-collaborate').addClass('hidden');
+    			 $('#collaborate-btn').removeClass('active');
     	}});
+    	
+    },
+    
+    _showCollabPanel = function(){
+    	
+    	if($('#collaborate-btn').hasClass('active') ){
+    		return;
+    	}
+    	
+    		$('div#lhp-collaborate').removeClass('hidden');
+    		$('div#lhp').animate({
+    			height: $('div#lhp-collaborate').outerHeight(true) + _navbarHeight 
+    		}, {
+    			complete: function(){
+    				$('div#lhp-collaborate').removeClass('hidden');
+    				$('#collaborate-btn').addClass('active');
+    				$('#collaborate-btn').removeClass('inactive');
+    			}});
+    	
     	
     },
     
@@ -56,19 +64,27 @@ YUI.add('mqlite-navbar', function(Y){
    		$('div#lhp').animate({
     		height: $('div#lhp-content').outerHeight(true) + _navbarHeight
     	});	
+   },
+   _reCalculateCollabPanelSize = function(){
+  		$('div#lhp').animate({
+   		height: $('div#lhp-collaborate').outerHeight(true) + _navbarHeight
+   	});	
    };
 	
 	$("span.add-destination").click(_addInput);
 	$("form").submit(function(){return false});        
     $('input').click(function(){$(this).select()});    
-    $('#search-btn').click(function(){
+    $('#search-btn').click(function(e){
+    	console.log("search-btn clik!");
     	if($(this).hasClass('active')){
     		_showCollabPanel();
     		_hideLHP();	
     	} else {
     		_hideCollabPanel();
     		_showLHP(); 
-       	}	
+       	}
+    	
+
     });
     
     $('#collaborate-btn').click(function(){
@@ -78,7 +94,7 @@ YUI.add('mqlite-navbar', function(Y){
     	} else {
     		_hideLHP();
     		_showCollabPanel(); 
-       	}	
+       	}	 
     });
     
     //Event delegation 
@@ -88,5 +104,22 @@ YUI.add('mqlite-navbar', function(Y){
 		_reCalculateLHPSize();
     	$("span.add-destination").show();
 	});
+    
+    
+    
+    //Err... hacked in public methods?
+    Y.navbar = {
+    		  showCollabPanel: function () {
+    	 			_hideLHP();		
+    	 			_showCollabPanel();
+    				
+    	       }, 
+    	       reCalculateCollabPanelSize: function (){
+    	    	   _reCalculateCollabPanelSize();
+    	       },
+    	       reCalculateLHPSize: function (){
+    	    	   _reCalculateLHPSize();
+    	       }
+    };
     
 });

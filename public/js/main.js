@@ -11,6 +11,7 @@ function(Y){
 	"use strict";
 	
 	var _app = Y_Main.namespace('mqlite').$mqliteApp, 
+	_coll = new MQA.ShapeCollection(),
 		/**
 		 * render poi based on open data response 
 		 */
@@ -34,15 +35,38 @@ function(Y){
 		    			  "<button class=\"button add_to_itinerary\" onclick=\"javascript:hackAddToItinerary('" + escaped +"');\">Add to Itinerary</button>" +
 		    		      "</div>";
 		    shape.setInfoContentHTML(content);
-		    map.addShape(shape);
-		};
+
+		      //HACK: adding to shapecollection obj first. Can't seem to retieve shapes properly when added directly to map?		    
+		    var coll = new MQA.ShapeCollection();
+		    coll.add(shape);
+		    coll.setName("searchResultsCollection");
+		    map.addShapeCollection(coll);		    
+	
+		},
+		
+		_renderCollectionPOI = function(point){
+			 
+		    var shape = new MQA.Poi(new MQA.LatLng(point.lat, point.lon));
+		    var icon = new MQA.Icon("http://mq-devhost-lm41.ihost.aol.com:8800/cdn/dotcom3/images/icons/collection/v2/7.png", 30, 30);
+		    shape.setRolloverContent("<div class=\"poi_detail\">" + point.name + "</div>"); 
+		    shape.setIcon(icon);
+		    shape.setKey(point.id);
+		    
+		    _coll.add(shape);
+		    
+		}
 		
 		
 	/*
 	 * Event handlers ----------------------------------------
 	 */	
 	Y.one('#lhp-content').delegate('key', function(){
-    	_app.navigate( '/search/' + this.get('value'));
+    	
+		//_app.navigate( '/search/' + this.get('value'));
+		
+		var path = { path: '/search/' + this.get('value')}
+		_app.handleSearch(path);
+		
     	_app.set('activeInput', this); 
     },'enter', 'input');
     
@@ -68,30 +92,126 @@ function(Y){
     
     if(_app.get('search')){
    		_renderPOI(MQ_DATA.search[0]);
-	}		
+	
+    }
+    
+    _coll.setName("itinerary");
+    map.addShapeCollection(_coll);
+    
+    if(MQ_DATA.collections){
+    	
+    	var collections = MQ_DATA.collections[0].pois; 
+    	for(var i=0; i < collections.length; i++){
+
+    		_renderCollectionPOI(collections[i]);
+    		drawOnCollabPanel(collections[i]);
+    	}
+    	
+    	 Y.navbar.showCollabPanel(); //focus on collaborate menu.	
+     	
+	}
+    
+    
+    //#pusher is a global var defined in application.html.erb    
+	var channel = pusher.subscribe('save_channel');
+	channel.bind('save_event', function(data) {
+		    _renderCollectionPOI(data);
+			drawOnCollabPanel(data);
+			
+			//HACK: urgh.....
+			var coll = map.getShapeCollection("searchResultsCollection");
+			if(coll){
+				coll.removeAll();		
+			}
+			
+			
+			
+			Y_Main.navbar.reCalculateCollabPanelSize();
+			rezoomMapToItineraryList();
+			
+			
+	});
+	
+	var delete_channel = pusher.subscribe('delete_channel');
+	   delete_channel.bind('delete_event', function(data) {
+		
+		   removeFromItinerary(data.id);
+			   
+	});
+    
+    
     	
 }); 
 
-function hackAddToItinerary(escapedObject){
+
+function rezoomMapToItineraryList(){
+	
+	var bb =  map.getShapeCollection("itinerary").getBoundingRect();			
+	map.zoomToRect(bb);
+}
+
+function removeFromItinerary(id){
+	
+	
+	$("li#itin_" + id).remove()
+	
+	var itinerary_pois =  map.getShapeCollection("itinerary");
+	var items  = itinerary_pois.items
+	for(i = 0; i < items.length; i++){
+	 
+	      if(items[i].key == id){	         
+	         itinerary_pois.remove(i);
+	      }
+	}
+	
+	Y_Main.navbar.reCalculateCollabPanelSize();
+	rezoomMapToItineraryList();
+	
+}
+
+
+function drawOnCollabPanel(obj){
+	
+	var deleteDiv = $("<div class=\"delete\">delete</div>");
+	deleteDiv.click( function(e){ 
+		
+		handleCollections('delete', "{\"id\" : \"" + obj.id + "\"}"); //remove from mongo.
+		
+	});
+	
+	var li = $("<li>" + obj.name + "</li>");	
+	li.attr("id", "itin_" + obj.id);
+	li.append(deleteDiv);
+	
+	$("#itinerary ul").append(li);
+
+}
+
+function hackAddToItinerary(escapedObject, skipPersist){
 	
 	var _app = Y_Main.namespace('mqlite').$mqliteApp, 
 	obj = JSON.parse(unescape(escapedObject));
 	
-	var li = $("<li>" + obj.name + " <div class=\"delete\">delete</div></li>");
 	
-	$("#itinerary ul").append(li);
 	
-	//TODO: add event handler for delete!!
-	//TODO: make callback to ruby to add!!!!
+	var data = {
 	
-	data = {
-	   id: "123345", /* hard-coded*/
-	   poi : {
-		name: "a b c d ";
-	   }
-	};
-	handleCollections('save', data);
-		
+	 poi: {
+		id: obj.id,
+		name: obj.name,
+		lon: obj.lon,
+		lat: obj.lat
+	 }
+	}
+	
+
+	//focus on collaborate menu.
+    Y_Main.navbar.showCollabPanel();	
+
+	if(!skipPersist){ //don't need to persist if this is called as a result of a push-message.
+		handleCollections('save', JSON.stringify(data)); //remove from mongo.
+	}
+
 }
 
 
@@ -113,3 +233,11 @@ function handleCollections(action, data) {
 
 	var request = Y_Main.io("/api/collections/" + action, cfg);
 }
+
+
+
+	
+	
+	
+    
+

@@ -1,11 +1,10 @@
 var Y_Main = YUI({
-	filter: 'debug', 
-    skin: 'night',
+	skin: 'night',
 	modules: {		
 		'mqlite-map': {
 			fullpath: '/js/map.js'
 		},		
-		'	r': {
+		'navbar': {
 			fullpath: '/js/navbar.js'
 		},
 		'mqlite-main': {
