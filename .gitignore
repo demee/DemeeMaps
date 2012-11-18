@@ -17,6 +17,6 @@
 *~
 .DS_Store
 /nbproject/private/
-/.idea/
-/.metadata/
-/.saas-cache/
+.idea/
+.metadata/
+.sass-cache/
