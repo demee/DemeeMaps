@@ -7,3 +7,7 @@ MQLite::Application.initialize!
 
 Rails.logger = Logger.new(STDOUT)
 Rails.logger.level = 0;
+
+MQLite::Application.configure do
+
+end
