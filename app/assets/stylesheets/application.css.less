@@ -12,7 +12,155 @@
 
 @import "app/assets/stylesheets/bootstrap/bootstrap.less";
 
-body {
-    .clearfix;
+
+
+/** Constants **/
+
+@navbarHeight: 40px;
+@mapquestGreen: #8CC63F;
+@mapquestPurple: #51214D;
+
+/** Animations declaration **/
+
+@-webkit-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-ms-keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/** Mixins **/
+
+.border-radius (@radius) {
+     border-radius: @radius;
+    -moz-border-radius: @radius;
+    -webkit-border-radius: @radius;
+}
+
+.border-radius-bottomright (@radius){
+    -moz-border-radius-bottomright: @radius;
+    -webkit-border-radius-bottomright: @radius;
+     border-radius-bottomright: @radius;
+    -khtml-border-radius-bottomright: @radius;
+}
+
+.box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  -webkit-box-shadow: @arguments;
+}
+
+
+/** Style declarations **/
+
+html, body {
+    height: 100%;
+}
+
+input.search-to {
+    display: none;
+}
+
+.navbar {
+  a.brand {
+    color: @mapquestGreen;
+  }
+
+  .container {
+     float: left;
+     margin-left: 10px;
+  }
+
+}
+
+div#map {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    width: 100%;
+
+    img {
+      max-width: none; /* Fix for boostrap breaking maps on FF */
+      -webkit-animation: fadeIn 0.5s;
+      /* -moz-animation:    fadeIn 0.5s; */ /* Turned off animations on FF & IE, seems to be very unefficient */
+      /* -ms-animation:     fadeIn 0.5s; */
+    }
+}
+
+
+
+div#lhp {
+
+    position: absolute;
+    z-index: 1;
+    display: inline;
+    background: rgba(54, 54, 54, 0.8);
+    color: #fff;
+    width: 400px;
+    max-height: 90%;
+
+
+    .border-radius-bottomright(5px);
+    .box-shadow(0, 0, 6px, #666);
+
+
+    div#lhp-content {
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-bottom: 20px;
+
+
+      &.hidden {
+        display: none;
+      }
+
+      form {
+         margin: 10px 20px 5px 20px;
+         input {
+            width: 320px;
+            box-shadow: none;
+            &:focus {
+              border-color: @mapquestGreen;
+              box-shadow: 0px 0px 5px @mapquestGreen;
+            }
+         }
+
+         i.icon-remove {
+           cursor: pointer;
+         }
+      }
+
+      button#get-directions {
+        margin-left: 20px;
+        display: none;
+      }
+
+      div#search-results {
+
+        ul {
+          margin-left: 0px;
+          li {
+            padding-left: 20px;
+            list-style-type: none;
+            margin-top: 5px;
+            cursor: pointer;
+            &:hover {
+              background: @mapquestPurple;
+            }
+          }
+        }
+      }
+
+      span.add-destination {
+        cursor: pointer;
+        margin-left: 20px;
+      }
+    }
 }
 
