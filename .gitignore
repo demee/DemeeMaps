@@ -13,3 +13,10 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+*.swp
+*~
+.DS_Store
+/nbproject/private/
+.idea/
+.metadata/
+.sass-cache/
