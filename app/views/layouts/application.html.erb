@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DemeeMaps</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_tag "require", :data => "main.js"%>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/"><strong>DemeeMaps v0.2</a>
+        <ul class="nav">
+          <li id="search-btn" class="active">
+            <a href="/search"  data-toggle="dropdown" data-target="#"> Search
+              <i class="icon-chevron-down icon-white"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>
