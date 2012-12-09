@@ -1218,4 +1218,9 @@
 
   });
 
+  //expose undersocre to amd project
+  if ( typeof define === "function") {
+    define( function () { return _; } );
+  }
+
 }).call(this);

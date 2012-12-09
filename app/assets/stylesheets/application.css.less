@@ -7,11 +7,12 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
+ *= require leaflet.css
+ *= require leaflet.ie.css
  */
 
-@import "app/assets/stylesheets/bootstrap/bootstrap.less";
 
+@import "app/assets/stylesheets/bootstrap/bootstrap.less";
 
 
 /** Constants **/
@@ -59,31 +60,24 @@
 
 /** Style declarations **/
 
-html, body {
-    height: 100%;
-}
-
-input.search-to {
-    display: none;
-}
-
-.navbar {
+#navbar {
   a.brand {
     color: @mapquestGreen;
   }
+  margin-bottom: 0px;
 
+  .navbar-inner {
+    .border-radius(0);
+  }
   .container {
-     float: left;
+
      margin-left: 10px;
   }
 
 }
 
 div#map {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    width: 100%;
+  position: relative;
 
     img {
       max-width: none; /* Fix for boostrap breaking maps on FF */
@@ -93,8 +87,6 @@ div#map {
     }
 }
 
-
-
 div#lhp {
 
     position: absolute;
@@ -102,9 +94,11 @@ div#lhp {
     display: inline;
     background: rgba(54, 54, 54, 0.8);
     color: #fff;
-    width: 400px;
-    max-height: 90%;
-
+    width: 380px;
+    max-height: 600px;
+    display: none;
+    top: 50px;
+    left: 10px;
 
     .border-radius-bottomright(5px);
     .box-shadow(0, 0, 6px, #666);
@@ -121,7 +115,7 @@ div#lhp {
       }
 
       form {
-         margin: 10px 20px 5px 20px;
+         margin: 20px 20px 5px 20px;
          input {
             width: 320px;
             box-shadow: none;
@@ -138,7 +132,6 @@ div#lhp {
 
       button#get-directions {
         margin-left: 20px;
-        display: none;
       }
 
       div#search-results {
@@ -157,9 +150,8 @@ div#lhp {
         }
       }
 
-      span.add-destination {
+      div.add-destination {
         cursor: pointer;
-        margin-left: 20px;
       }
     }
 }

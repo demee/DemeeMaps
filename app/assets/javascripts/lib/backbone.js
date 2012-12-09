@@ -1428,4 +1428,9 @@
     throw new Error('A "url" property or function must be specified');
   };
 
+  // exposes backbone to amd project
+  if ( typeof define === "function") {
+    define(function(){ return Backbone; });
+  }
+
 }).call(this);

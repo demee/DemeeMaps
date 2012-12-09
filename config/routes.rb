@@ -1,7 +1,8 @@
 DemeeMaps::Application.routes.draw do
-  get "directions/search"
+  get "directions" => "directions#index"
 
-  get "search/search"
+  get "search" => "main#index"
+  get "search/:input" => "search#search"
 
   get "/" => "main#index"
 
