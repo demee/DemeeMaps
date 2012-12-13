@@ -15,7 +15,7 @@ function($, _, Backbone){
     },
     render: function(){
       var _this = this;
-      _this.$el.find('#user-menu').dropdown();
+      //_this.$el.find('#user-menu').dropdown();
     }
   });
 

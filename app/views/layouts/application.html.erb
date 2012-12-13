@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>DemeeMaps</title>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "lib/require", "data-main" => javascript_path("main.js") %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div id="navbar" class="navbar">
-    <div class="navbar-inner">
-      <div class="container" style="width: auto;">
-        <a class="brand" href="/">
-          <strong>DemeeMaps v0.2</strong>
-        </a>
+  <head>
+    <title>DemeeMaps</title>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= javascript_include_tag "lib/require", "data-main" => javascript_path("main.js") %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div id="navbar" class="navbar">
+      <div class="navbar-inner">
+        <div class="container" style="width: auto;">
+          <a class="brand" href="/">
+            <strong>DemeeMaps v0.2</strong>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
 
-<div id="lhp">
-<%= yield %>
-</div>
-<div id="map"></div>
-</body>
+    <div id="lhp">
+      <%= yield %>
+    </div>
+    <div id="map"></div>
+  </body>
 </html>

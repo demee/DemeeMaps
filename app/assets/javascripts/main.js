@@ -1,5 +1,8 @@
 require.config({
   shim: {
+    'lib/jqueryui': {
+      deps: ['lib/jquery']
+    },
     'lib/bootstrap': {
       deps: ['lib/jquery'] //FIXME: sometimes jquery is not loaded before bootstrap causing it to fail
     },
