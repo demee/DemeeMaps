@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================== */
 
-
+define(['jquery'], function (jQuery) {
 !function ($) {
 
   "use strict"; // jshint ;_;
@@ -173,4 +173,6 @@
     e.preventDefault()
   })
 
-}(window.jQuery);
+}( jQuery );
+
+});

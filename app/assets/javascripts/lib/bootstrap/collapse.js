@@ -17,7 +17,7 @@
  * limitations under the License.
  * ============================================================ */
 
-
+define(['jquery'], function (jQuery) {
 !function ($) {
 
   "use strict"; // jshint ;_;
@@ -152,5 +152,6 @@
     $this[$(target).hasClass('in') ? 'addClass' : 'removeClass']('collapsed')
     $(target).collapse(option)
   })
+}( jQuery );
 
-}(window.jQuery);
+});

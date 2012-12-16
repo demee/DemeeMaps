@@ -17,7 +17,7 @@
  * limitations under the License.
  * ============================================================ */
 
-
+define(['jquery'], function (jQuery) {
 !function ($) {
 
   "use strict"; // jshint ;_;
@@ -145,4 +145,6 @@
     .on('click.dropdown.data-api touchstart.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
     .on('keydown.dropdown.data-api touchstart.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
 
-}(window.jQuery);
+}( jQuery );
+
+});

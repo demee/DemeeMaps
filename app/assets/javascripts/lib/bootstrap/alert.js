@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================================================== */
 
-
+define(['jquery'], function (jQuery) {
 !function ($) {
 
   "use strict"; // jshint ;_;
@@ -85,4 +85,6 @@
 
   $(document).on('click.alert.data-api', dismiss, Alert.prototype.close)
 
-}(window.jQuery);
+}( jQuery );
+
+});

@@ -17,7 +17,7 @@
  * limitations under the License.
  * ============================================================ */
 
-
+define(['jquery'], function (jQuery) {
 !function($){
 
   "use strict"; // jshint ;_;
@@ -307,4 +307,6 @@
     $this.typeahead($this.data())
   })
 
-}(window.jQuery);
+}( jQuery );
+
+});

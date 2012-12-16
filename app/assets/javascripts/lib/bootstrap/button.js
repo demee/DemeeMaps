@@ -17,7 +17,7 @@
  * limitations under the License.
  * ============================================================ */
 
-
+define(['jquery'], function (jQuery) {
 !function ($) {
 
   "use strict"; // jshint ;_;
@@ -91,4 +91,6 @@
     $btn.button('toggle')
   })
 
-}(window.jQuery);
+}( jQuery );
+
+});
