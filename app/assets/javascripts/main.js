@@ -8,15 +8,9 @@ require.config({
     leaflet:    'lib/leaflet'
   },
   shim: {
-    'jqueryui': {
-      deps: ['jquery']
-    },
-    'bootstrap': {
-      deps: ['jquery']
-    },
     'backbone': {
       deps: ['underscore', 'jquery']
-    }
+    },
   }
 });
 
