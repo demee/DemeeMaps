@@ -8,7 +8,6 @@ function($, _, Backbone){
   "use strict";
 
   var Navbar = Backbone.View.extend({
-    el: $("#navbar")[0],
     events: {},
     initialize: function(){
 

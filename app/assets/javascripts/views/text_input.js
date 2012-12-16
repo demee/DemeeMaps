@@ -6,27 +6,21 @@ define([
 function(_, $, Backbone){
   "use strict";
 
-  var _input_template = '<input name="location" type="text" class="search-from" placeholder="Type in Location"/>';
+  var
 
-  var TextInput = Backbone.View.extend({
+  //<input name="location" type="text" class="search-from" placeholder="Type in Location"/>
+
+  TextInput = Backbone.View.extend({
     tagName: 'input',
-    el: $('input').get(0),
-    events: {
-
-    },
-    template: _.template(_input_template),
-    initialize: function(el){
-      var _this = this;
-
-      if(!el){
-        throw new Error("el is not defined")
-      }
-
-      //_this.setElement(el)
-
-    },
     render: function(){
+      var $el = this.$el;
 
+      $el.addClass('search-from');
+      $el.attr('name', 'location');
+      $el.attr('type', 'text');
+      $el.attr('placeholder', 'Type in Location');
+
+      return this;
     }
   });
 

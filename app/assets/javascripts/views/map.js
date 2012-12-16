@@ -8,7 +8,6 @@ function(_, $, Backbone, L){
   "use strict";
 
   var Map = Backbone.View.extend({
-    el: $("#map"),
     events: {
 
     },

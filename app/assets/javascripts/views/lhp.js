@@ -8,23 +8,37 @@ function(_, $, Backbone, TextInput){
   "use strict";
 
   var LHP = Backbone.View.extend({
-    el: $('#lhp')[0],
-    events: {},
+    events: {
+      'click div.add-destination': 'add_destination'
+    },
+    inputs: [],
     initialize: function(){
       var _this = this;
 
-      _this.inputs = []; //input array
-      /* There is at leats one text input, lets create views for all of them */
-      _this.$('input').each(function(index, el){
-        var inpt = new TextInput(el);
-        //_this.inputs.push(inpt);
-      });
 
     },
     render: function(){
-      var _this = this;
+      var
+      _this = this,
+      input = new TextInput();
+
+      _this.inputs.push(input); //TODO: Make it searchable & idexable, useless for now
+
+      _this.$el.find('form').prepend(input.render().el);
+
+      _this.$el.find('input').first().focus();
       _this.$el.fadeIn();
-      _this.$el.find('input').first().focus()
+    },
+    add_destination: function(){
+      var
+      _this = this,
+      input = new TextInput();
+
+      _this.inputs.push(input);
+
+      _this.$el.find('form > input').last().after(input.render().el);
+
+
     }
   });
 
