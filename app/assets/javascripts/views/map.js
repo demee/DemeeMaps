@@ -1,8 +1,8 @@
 define([
-  'lib/underscore',
-  'lib/jquery',
-  'lib/backbone',
-  'lib/leaflet'
+  'underscore',
+  'jquery',
+  'backbone',
+  'leaflet'
 ],
 function(_, $, Backbone, L){
   "use strict";

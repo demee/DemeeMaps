@@ -1,26 +1,32 @@
 require.config({
+  paths: {
+    jquery:     'lib/jquery',
+    jqueryui:   'lib/jqueryui',
+    bootstrap:  'lib/bootstrap',
+    backbone:   'lib/backbone',
+    underscore: 'lib/underscore',
+    leaflet:    'lib/leaflet'
+  },
   shim: {
-    'lib/jqueryui': {
-      deps: ['lib/jquery']
+    'jqueryui': {
+      deps: ['jquery']
     },
-    'lib/bootstrap': {
-      deps: ['lib/jquery'] //FIXME: sometimes jquery is not loaded before bootstrap causing it to fail
+    'bootstrap': {
+      deps: ['jquery']
     },
-    'lib/backbone': {
-      //These script dependencies should be loaded before loading
-      //backbone.js
-      deps: ['lib/underscore', 'lib/jquery']
+    'backbone': {
+      deps: ['underscore', 'jquery']
     }
   }
 });
 
 
-require(['views/map', 'views/navbar', 'views/lhp', 'lib/jquery'], function(Map, Navbar, Lhp){
+require(['views/map', 'views/navbar', 'views/lhp'], function(Map, Navbar, Lhp){
   "use strict";
 
-  var map = new Map(),
+  var map    = new Map(),
       navbar = new Navbar(),
-      lhp = new Lhp();
+      lhp    = new Lhp();
 
   map.render();
   navbar.render();

@@ -1,8 +1,8 @@
 define([
-  'lib/jquery',
-  'lib/underscore',
-  'lib/backbone',
-  'lib/bootstrap/dropdown' //attached to $
+  'jquery',
+  'underscore',
+  'backbone',
+  'bootstrap/dropdown' //attached to $
 ],
 function($, _, Backbone){
   "use strict";

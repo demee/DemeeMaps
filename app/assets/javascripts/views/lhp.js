@@ -1,7 +1,7 @@
 define([
-  'lib/underscore',
-  'lib/jquery',
-  'lib/backbone',
+  'underscore',
+  'jquery',
+  'backbone',
   'views/text_input'
 ],
 function(_, $, Backbone, TextInput){
