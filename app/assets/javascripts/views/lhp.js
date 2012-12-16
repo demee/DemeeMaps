@@ -18,25 +18,23 @@ function(_, $, Backbone, TextInput){
 
     },
     render: function(){
-      var
-      _this = this,
-      input = new TextInput();
+      var _this = this,
+          input = new TextInput();
 
       _this.inputs.push(input); //TODO: Make it searchable & idexable, useless for now
-
       _this.$el.find('form').prepend(input.render().el);
 
-      _this.$el.find('input').first().focus();
       _this.$el.fadeIn();
+
+      _this.$el.find('input').first().focus();
     },
     add_destination: function(){
-      var
-      _this = this,
-      input = new TextInput();
+      var _this = this,
+          input = new TextInput();
 
       _this.inputs.push(input);
 
-      _this.$el.find('form > input').last().after(input.render().el);
+      _this.$el.find('form > div.location-input').last().after(input.render().el);
 
 
     }

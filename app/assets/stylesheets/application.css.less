@@ -115,19 +115,25 @@ div#lhp {
       }
 
       form {
-         margin: 20px 20px 5px 20px;
-         input {
-            width: 320px;
+        margin: 20px 20px 5px 20px;
+        div.location-input {
+          input {
+            width: 300px;
             box-shadow: none;
+            padding-right: 30px;
             &:focus {
               border-color: @mapquestGreen;
               box-shadow: 0px 0px 5px @mapquestGreen;
             }
-         }
 
-         i.icon-remove {
-           cursor: pointer;
-         }
+          }
+
+          button.close {
+            margin: 3px 0 0 0;
+            position: absolute;
+            right: 33px;
+          }
+        }
       }
 
       button#get-directions {

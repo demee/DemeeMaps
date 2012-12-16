@@ -6,20 +6,17 @@ define([
 function(_, $, Backbone){
   "use strict";
 
-  var
-
-  //<input name="location" type="text" class="search-from" placeholder="Type in Location"/>
+  var _template_text = ['<input name="location" type="text" class="search-from" placeholder="Type in Location"/>',
+                   '<button class="close">&times;</button>'].join(''),
 
   TextInput = Backbone.View.extend({
-    tagName: 'input',
+    template: _.template(_template_text),
+    className: 'location-input',
     render: function(){
-      var $el = this.$el;
+      var _this = this,
+          $el   = _this.$el;
 
-      $el.addClass('search-from');
-      $el.attr('name', 'location');
-      $el.attr('type', 'text');
-      $el.attr('placeholder', 'Type in Location');
-
+      $el.html(_this.template({}));
       return this;
     }
   });
