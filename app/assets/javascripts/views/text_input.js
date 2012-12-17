@@ -4,28 +4,30 @@ define([
   'backbone'
 ],
 function(_, $, Backbone){
-  "use strict";
+  'use strict';
 
   var _template_text = ['<input name="location" type="text" class="search-from" placeholder="Type in Location"/>',
                         '<button class="close">&times;</button>'].join(''),
       _view_counter = 0,
 
   TextInput = Backbone.View.extend({
+    template: _.template(_template_text),
+    className: 'location-input',
     events: {
       'click button.close': function(){
         var _this = this;
+
         _view_counter--;
         _this.remove();
         _this.trigger('remove');
       }
     },
-    template: _.template(_template_text),
-    className: 'location-input',
     initialize: function(){
       _view_counter++;
     },
     show_close_icon: function(){
       var _this = this;
+
       if(_view_counter === 1){
         _this.$el.find('button.close').hide();
       } else {

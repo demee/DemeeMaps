@@ -9,10 +9,18 @@ function(_, $, Backbone, TextInput){
 
   var LHP = Backbone.View.extend({
     events: {
-      'click div.add-destination': function(){
+      'click div.add-destination': function(event){
         var _this = this;
         _this.add_destination();
         _this.update_search_button_text();
+      },
+      'keypress form': function(event){
+        /* This code supose to prevent browser from fireing click event,
+           on first button it can find inside the form */
+        if(event.keyCode === 13) {
+          event.preventDefault();
+          return false;
+        }
       }
     },
     render: function(){
@@ -21,9 +29,6 @@ function(_, $, Backbone, TextInput){
 
 
       _this.$el.find('form').prepend(input.render().el);
-
-
-
       _this.$el.fadeIn();
       _this.$el.find('input').first().focus();
 

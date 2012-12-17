@@ -18,9 +18,9 @@ require.config({
 require(['views/map', 'views/navbar', 'views/lhp'], function(Map, Navbar, Lhp){
   "use strict";
 
-  var map    = new Map({el: $("#map").get(0)}),
-      navbar = new Navbar({el: $("#navbar").get(0)}),
-      lhp    = new Lhp({el: $('#lhp').get(0)});
+  var map    = new Map({el: $("#map")}),
+      navbar = new Navbar({el: $("#navbar")}),
+      lhp    = new Lhp({el: $('#lhp')});
 
   map.render();
   navbar.render();
