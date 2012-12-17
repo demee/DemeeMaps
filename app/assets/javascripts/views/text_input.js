@@ -7,7 +7,7 @@ function(_, $, Backbone){
   "use strict";
 
   var _template_text = ['<input name="location" type="text" class="search-from" placeholder="Type in Location"/>',
-                   '<button class="close">&times;</button>'].join(''),
+                        '<button class="close">&times;</button>'].join(''),
       _view_counter = 0,
 
   TextInput = Backbone.View.extend({
