@@ -17,7 +17,7 @@ function(_, $, Backbone, TextInput){
       } else if(formData.location.length > 1 &&
                 formData.location[0].length > 0 &&
                 formData.location[1].length > 0) {
-        _this.router.navigate(['/directions', formData.location.join(';')].join(''), {trigger: true});
+        _this.router.navigate(['/directions/', formData.location.join(';')].join(''), {trigger: true});
       }
   };
 
@@ -30,6 +30,9 @@ function(_, $, Backbone, TextInput){
       },
       'click button#main-search-button': function(){
         _proccessFormSubmit.call(this, arguments);
+      },
+      'click div#search-results ul > li': function(){
+
       },
       'keypress form': function(event){
         /* This code supose to prevent browser from fireing click event,
@@ -79,7 +82,9 @@ function(_, $, Backbone, TextInput){
     render_search_results: function(query, page){
       this.$el.find('#search-results').load(encodeURIComponent(query));
     },
-    render_directions_results: function(query){}
+    render_directions_results: function(query){
+      this.$el.find('#search-results').load(encodeURIComponent(query));
+    }
   });
 
   return LHP;

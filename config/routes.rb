@@ -4,6 +4,8 @@ DemeeMaps::Application.routes.draw do
   get "search/:query"        => "search#search"
   get "search/:query/p:page" => "search#search"
 
+  get "directions/:query"    => "directions#directions"
+
   get "/" => "main#index"
 
 

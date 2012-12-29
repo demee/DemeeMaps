@@ -11,7 +11,7 @@ class SearchController < ApplicationController
     @search_query   = params[:query]
     @search_results = @map_api.search(@search_query).parsed_response
 
-    if request.headers['X-Requested-With'] == 'XMLHttpRequest'
+    if partial_render?
       render :layout => false
     end
 

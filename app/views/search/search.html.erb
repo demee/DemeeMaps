@@ -1,7 +1,8 @@
 <h5>Search Results for <%= @search_query %>:</h5>
 <ul>
 <% for result in @search_results do %>
-
-  <li><%= result['display_name'] %></li>
+  <li id="search_result_<%= result['place_id'] %>">
+    <%= result['display_name'] %>
+  </li>
 <% end %>
 </ul>

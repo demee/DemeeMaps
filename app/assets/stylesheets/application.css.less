@@ -110,12 +110,14 @@ div#lhp {
     .border-radius-bottomright(5px);
     .box-shadow(0, 0, 6px, #666);
 
+    i#close-panel {
+      cursor: pointer;
+    }
+
 
     div#lhp-content {
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding-bottom: 20px;
 
+      padding-bottom: 20px;
 
       &.hidden {
         display: none;
@@ -153,15 +155,19 @@ div#lhp {
         ul {
           margin-left: 0px;
           li {
-            padding-left: 20px;
             list-style-type: none;
             margin-top: 5px;
             cursor: pointer;
             &:hover {
               background: @mapquestPurple;
             }
+            border-bottom: 1px solid;
           }
+          padding-right: 20px;
+          max-height: 400px;
         }
+
+
       }
 
       div.add-destination {

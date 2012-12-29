@@ -1,0 +1,18 @@
+<h5>Directions results: </h5>
+<ul>
+  <% step = 0 %>
+  <% for location in @locations do %>
+  <li>
+    <%= location['adminArea4'] %>
+    <ul>
+    <% if step < @locations.size - 1 %>
+      <% @legs[step]['maneuvers'].each do |maneuver| %>
+        <li><%= maneuver['narrative'] %></li>
+      <% end %>
+    <% end %>
+    </ul>
+    <% step += 1 %>
+  </li>
+  <% end %>
+
+</ul>

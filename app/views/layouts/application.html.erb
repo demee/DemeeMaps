@@ -18,15 +18,18 @@
     </div>
 
     <div id="lhp">
-      <div id="lhp-content">
-        <form class="pull-left">
+      <i id="close-panel" class="icon-chevron-left pull-right icon-white"></i>
+
+      <div id="lhp-content" class="clearfix">
+        <form>
           <div class="add-destination">
             <i class="icon-plus icon-white" style="cursor:pointer;"></i>
             &nbsp;Add destination
           </div>
-        </form>
 
+        </form>
         <button id="main-search-button" class="btn btn-primary">Get Map</button>
+
 
         <div id="search-results">
           <%= yield %>
