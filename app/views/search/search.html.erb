@@ -1,2 +1,7 @@
-<h1>Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
+<h5>Search Results for <%= @search_query %>:</h5>
+<ul>
+<% for result in @search_results do %>
+
+  <li><%= result['display_name'] %></li>
+<% end %>
+</ul>

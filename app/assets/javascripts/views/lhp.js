@@ -2,10 +2,24 @@ define([
   'underscore',
   'jquery',
   'backbone',
-  'views/text_input'
+  'views/text_input',
+  'jquery-form-serializer'
 ],
 function(_, $, Backbone, TextInput){
-  "use strict";
+  'use strict';
+
+  var _proccessFormSubmit = function(){
+    var _this = this,
+        formData = _this.$el.find('form').serializeObject();
+
+      if(formData.location.length == 1 && formData.location[0].length > 0) {
+        _this.router.navigate(['/search/', formData.location].join(''),{trigger: true});
+      } else if(formData.location.length > 1 &&
+                formData.location[0].length > 0 &&
+                formData.location[1].length > 0) {
+        _this.router.navigate(['/directions', formData.location.join(';')].join(''), {trigger: true});
+      }
+  };
 
   var LHP = Backbone.View.extend({
     events: {
@@ -14,19 +28,29 @@ function(_, $, Backbone, TextInput){
         _this.add_destination();
         _this.update_search_button_text();
       },
+      'click button#main-search-button': function(){
+        _proccessFormSubmit.call(this, arguments);
+      },
       'keypress form': function(event){
         /* This code supose to prevent browser from fireing click event,
            on first button it can find inside the form */
         if(event.keyCode === 13) {
+          _proccessFormSubmit.call(this, arguments);
           event.preventDefault();
           return false;
         }
       }
     },
+    initialize: function(options, router){
+      var _this = this;
+      _this.router = router;
+
+      router.on('route:search',     _.bind(_this.render_search_results,     _this));
+      router.on('route:directions', _.bind(_this.render_directions_results, _this));
+    },
     render: function(){
       var _this = this,
           input = new TextInput();
-
 
       _this.$el.find('form').prepend(input.render().el);
       _this.$el.fadeIn();
@@ -51,7 +75,11 @@ function(_, $, Backbone, TextInput){
       } else {
         main_search_button.text('Get Map');
       }
-    }
+    },
+    render_search_results: function(query, page){
+      this.$el.find('#search-results').load(encodeURIComponent(query));
+    },
+    render_directions_results: function(query){}
   });
 
   return LHP;

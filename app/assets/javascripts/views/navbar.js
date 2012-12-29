@@ -9,7 +9,9 @@ function($, _, Backbone){
 
   var Navbar = Backbone.View.extend({
     events: {},
-    initialize: function(){
+    initialize: function(el){
+      var _this = this;
+
 
     },
     render: function(){

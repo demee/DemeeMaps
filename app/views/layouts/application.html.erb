@@ -18,7 +18,20 @@
     </div>
 
     <div id="lhp">
-      <%= yield %>
+      <div id="lhp-content">
+        <form class="pull-left">
+          <div class="add-destination">
+            <i class="icon-plus icon-white" style="cursor:pointer;"></i>
+            &nbsp;Add destination
+          </div>
+        </form>
+
+        <button id="main-search-button" class="btn btn-primary">Get Map</button>
+
+        <div id="search-results">
+          <%= yield %>
+        </div>
+      </div>
     </div>
     <div id="map"></div>
   </body>
