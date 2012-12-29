@@ -6,6 +6,7 @@ gem 'rails', '3.2.9'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'httparty'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -32,4 +33,5 @@ end
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'
+#
