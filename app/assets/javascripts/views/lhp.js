@@ -49,18 +49,26 @@ function(_, $, Backbone, TextInput){
       var _this = this;
       _this.router = router;
 
+
       router.on('route:search',     _.bind(_this.render_search_results,     _this));
       router.on('route:directions', _.bind(_this.render_directions_results, _this));
     },
     render: function(){
       var _this = this,
-          input = new TextInput();
+          input = new TextInput(),
+      _adjust_lhp_size = function adjust_lhp_size(){
+        _this.$el.css('height', $(window).outerHeight() - $('.navbar').outerHeight() - 40);
+      };
 
       _this.$el.find('form').prepend(input.render().el);
       _this.$el.fadeIn();
       _this.$el.find('input').first().focus();
 
       _this.$el.find('#search-results').mCustomScrollbar();
+
+      _adjust_lhp_size();
+
+      $(window).resize(_adjust_lhp_size);
 
     },
     add_destination: function(){

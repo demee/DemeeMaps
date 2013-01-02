@@ -12,8 +12,8 @@ function(_, $, Backbone, L){
 
     },
     initialize: function(){
-      var _this = this;
-      var _adjust_map_size = function adjust_map_size(){
+      var _this = this,
+      _adjust_map_size = function adjust_map_size(){
         _this.$el.css('height', $(window).outerHeight() - $('.navbar').outerHeight());
       };
       $(window).resize(_adjust_map_size);
