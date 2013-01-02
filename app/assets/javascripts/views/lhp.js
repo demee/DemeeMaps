@@ -3,7 +3,8 @@ define([
   'jquery',
   'backbone',
   'views/text_input',
-  'jquery-form-serializer'
+  'jquery-form-serializer',
+  'jquery.customscrollbar'
 ],
 function(_, $, Backbone, TextInput){
   'use strict';
@@ -58,6 +59,8 @@ function(_, $, Backbone, TextInput){
       _this.$el.find('form').prepend(input.render().el);
       _this.$el.fadeIn();
       _this.$el.find('input').first().focus();
+
+      _this.$el.find('#search-results').mCustomScrollbar();
 
     },
     add_destination: function(){

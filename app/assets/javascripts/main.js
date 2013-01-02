@@ -6,7 +6,10 @@ require.config({
     backbone:   'lib/backbone',
     underscore: 'lib/underscore',
     leaflet:    'lib/leaflet',
-    'jquery-form-serializer': 'lib/jquery-form-serializer'
+    'jquery-form-serializer': 'lib/jquery-form-serializer',
+    'jquery.mousewheel':      'lib/jquery.mousewheel',
+    'jquery.customscrollbar': 'lib/jquery.mCustomScrollbar',
+    'jquery.easing':          'lib/jquery.easing'
   },
   shim: {
     'backbone': {
